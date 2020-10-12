@@ -1,0 +1,11 @@
+language: node_js
+services:
+- docker
+before_install:
+- docker build -t latest .
+- docker login -u ddhp -p $DOCKER_HUB_PW
+- docker push exchange-twd:latest
+env:
+  global:
+    # DOCKER_HUB_PW
+    secure: Wa8Ib0a5ffYSYSbmAMD8x2NdcrHxqbFQlSav8pzHFvAjFvQ+vIDndvB6ZqO51p1DXZ3nC/vL2WOy8cEW1gyQ/0/1hFvB0ABQWNCPMlCJxJmr4l/htfwWCVaFvkRTKULzL7EfOMxRXAeZUEFDlPTi4h5rbIBsuSOIQKxscE3CHlVwjEmH3PfBu+dFuEnd/en2sHyifQshGk0qy9BkJhiNXsEnjWdy8LKBaxeL5TVWB3owKtcc1/+a/v82GTkRV0oZ873AMPgkTB+ktwzmMsIxntfrK8w2szFsU71YSZicwEAiz8n8CC6RWUq85I29uL24JxKM7XvObjjNSKNDGZVAEM8wY2LeFs7hjQu5B+0xfH3oPI5VRBhyMdB6lYQKYpCXGIOMUvD9m47LVmI2ewQ7eqyA57w3Ss0+yUx4mlM8jhBTZmr+WdRKGWUKgFX3smOLruHIgaE6ecwR7wNP3rKKonKXe5FRV7tAgmCDHkVUxfCyKApajtPteLvEu1ncmGhPhmhM0cq74ZUq4JgXqnKY60pLo0zciosCIXM9umzbONwVOLl5OSRmXUKO+Q4H/GWOn70N0UeyS+2gPaWkJbTo/4weqElY2Sj37MJ5eHJ60yJY87JQhcK4sc7ppYHgjkHjhkugXH48z5l2ZSBjBNYBjIUt9Q6BPx14vJ8XmIqSMEk=
