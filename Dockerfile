@@ -3,6 +3,7 @@ FROM buildkite/puppeteer
 
 # Create app directory
 WORKDIR /usr/src/app
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied

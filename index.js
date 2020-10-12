@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const puppeteer = require('puppeteer');
 const fromUnixTime = require('date-fns/fromUnixTime');
 const { utcToZonedTime, format } = require('date-fns-tz')
-const API_URL = process.env.API_URL;
+const { API_URL, ON_DOCKER } = process.env;
 
 const isCurrentUserRoot = () => process.getuid() == 0; // UID 0 is always root
 
@@ -10,6 +10,7 @@ const scape = async () => {
   const browser = await puppeteer.launch({
     headless: true,
     args: isCurrentUserRoot() ? ['--no-sandbox'] : undefined,
+    executablePath: ON_DOCKER ? 'google-chrome-stable' : undefined,
   });
   const page = await browser.newPage();
   await page.goto('https://www.cathaybk.com.tw/cathaybk/personal/deposit-exchange/rate/currency-billboard/?indexwidget');
