@@ -3,7 +3,7 @@ node_js:
 - 12
 services:
 - docker
-before_install:
+script:
 - docker build -t ddhp/exchange-twd:latest -t ddhp/exchange-twd:$TRAVIS_COMMIT .
 - docker login -u ddhp -p $DOCKER_HUB_PW
 - docker push ddhp/exchange-twd:latest
