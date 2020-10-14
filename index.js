@@ -35,7 +35,7 @@ const scape = async () => {
   });
 
   const text = `usd: ${usd}, gbp: ${gbp}`;
-  console.log(text);
+  // console.log(text);
 
   await browser.close();
   return text;
@@ -70,10 +70,16 @@ const job = async () => {
   const timeZone = 'Asia/Taipei';
   const zonedDate = utcToZonedTime(nowUnix, timeZone);
   const hour = format(zonedDate, 'H', { timeZone });
-  const diff = hour > 9 && hour < 19 ? 1000*60*2 : 1000*60*30;
-  await postMessage(await scape());
-  lastTimestamp = new Date().getTime();
-  setTimeout(job, diff);
+  const diff = hour > 9 && hour < 21 ? 1000*60*2 : 1000*60*30;
+  if ((now - lastTimestamp) > diff) {
+    try {
+      await postMessage(await scape());
+      lastTimestamp = new Date().getTime();
+    } catch (e) {
+      console.warn(e);
+    }
+  }
+  setTimeout(job, 3*1000);
 }
 
 job();
